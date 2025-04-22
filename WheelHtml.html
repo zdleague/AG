@@ -2,128 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Vertical Wheel from Google Sheets</title>
+  <title>Spin Wheel</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      overflow: hidden;
-      font-family: sans-serif;
+      background: #222;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
+
     #wheel-container {
-      border: 4px solid white;
-      width: 300px;
-      height: 300px;
-      overflow: hidden;
+      width: 400px;
+      height: 400px;
       position: relative;
     }
+
     #wheel {
-      position: absolute;
       width: 100%;
-      transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      height: 100%;
+      border-radius: 50%;
+      border: 8px solid #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      background: conic-gradient(
+        red 0deg 90deg,
+        yellow 90deg 180deg,
+        green 180deg 270deg,
+        blue 270deg 360deg
+      );
+      transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .item {
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #444;
-      background: #222;
-    }
-    .indicator {
+
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 40px solid white;
       position: absolute;
-      top: 120px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 2em;
-      color: red;
-      pointer-events: none;
+      top: -40px;
+      left: calc(50% - 20px);
     }
   </style>
 </head>
 <body>
-  <div class="indicator">▼</div>
   <div id="wheel-container">
+    <div id="pointer"></div>
     <div id="wheel"></div>
   </div>
 
   <script>
-    const wheel = document.getElementById('wheel');
-    let options = [];
+    let currentRotation = 0;
+    let isSpinning = false;
 
-    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQs-Szpo_J6BXehkgdXROIt99TcipqnMHCizMdkpMJ2-Ag2mY_C_n1j2Ij-OekVbLTrmarwt4m6b-6p/pub?output=csv';
+    function spinWheel() {
+      if (isSpinning) return;
+      isSpinning = true;
 
-    async function loadOptionsFromSheet() {
-      try {
-        const res = await fetch(sheetURL);
-        const text = await res.text();
-        options = text
-          .split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 0);
-        buildWheel();
-      } catch (err) {
-        console.error("Error loading Google Sheet:", err);
-        options = ["Error loading sheet"];
-        buildWheel();
-      }
+      const extraSpins = 5;
+      const landing = Math.floor(Math.random() * 360);
+      const total = currentRotation + extraSpins * 360 + landing;
+
+      const wheel = document.getElementById("wheel");
+      wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)";
+      wheel.style.transform = `rotate(${total}deg)`;
+
+      currentRotation = total;
+
+      setTimeout(() => {
+        isSpinning = false;
+        console.log("Landed on:", landing);
+      }, 5000);
     }
 
-    function buildWheel() {
-      wheel.innerHTML = '';
-      options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-    }
-
-let currentRotation = 0;
-let isSpinning = false;
-
-function spinWheel() {
-  if (isSpinning) return;
-  isSpinning = true;
-
-  const extraSpins = 6; // Full 360s (change this for more drama)
-  const stopAt = Math.floor(Math.random() * options.length); // Where we land
-  const total = currentRotation + (extraSpins * 360) + stopAt;
-
-  const wheel = document.getElementById("wheel");
-
-  // Spin settings
-  wheel.style.transition = "transform 6s cubic-bezier(0.25, 1, 0.5, 1)";
-  wheel.style.transform = `rotateX(-${total}px)`;
-
-  // Remember current position for next spin
-  currentRotation = total;
-
-  setTimeout(() => {
-    isSpinning = false;
-    console.log("🎯 Landed on angle:", stopAt);
-  }, 6000);
-}
-
-    // Trigger from Mix It Up
+    // Trigger from Mix It Up or browser console
     window.addEventListener("message", (event) => {
-      console.log("Received message:", event.data);
+      console.log("Message received:", event.data);
       if (event.data === "spin") {
         spinWheel();
       }
     });
 
-
-    // Optional: click to test
-    document.body.addEventListener("click", spinWheel);
-
-    loadOptionsFromSheet();
+    // Also spin on click for testing
+    document.getElementById("wheel").addEventListener("click", spinWheel);
   </script>
 </body>
 </html>
