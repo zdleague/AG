@@ -22,11 +22,10 @@
       overflow: hidden;
       position: relative;
     }
-    #wheel {
-      position: absolute;
-      width: 100%;
-      transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
+   #wheel {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
     .item {
       height: 60px;
       display: flex;
