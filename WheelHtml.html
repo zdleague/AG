@@ -104,22 +104,22 @@ options.forEach(option => {
   function spinWheel() {
   if (options.length === 0) return;
 
-  const itemHeight = 60;
-  const spinRounds = 6; // how many full spins before stopping
+  const itemHeight = 60;const totalItems = options.length;
+  const spinRounds = 3; // how many full spins before stopping
   const randomIndex = Math.floor(Math.random() * options.length);
   const totalItems = options.length;
 
   // Distance to scroll = full spins + where it lands
   const scrollDistance = (totalItems * spinRounds + randomIndex) * itemHeight;
 
-  wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)";
+  wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
 
   // After animation completes, snap it back to the visible entry
   setTimeout(() => {
     wheel.style.transition = "none";
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  }, 5200); // slightly longer than transition time for safety
+  }, 6200); // slightly longer than transition time for safety
 }
   // After animation completes, snap it back to the visible entry
   setTimeout(() => {
