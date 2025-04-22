@@ -89,7 +89,7 @@
       if (options.length === 0) return;
       const randomIndex = Math.floor(Math.random() * options.length);
       const offset = 60 * randomIndex;
-      wheel.style.transform = `translateY(360deg)`;
+      wheel.style.transform = `rotateY(-${offset}px)`;
     }
 
     // Trigger from Mix It Up
