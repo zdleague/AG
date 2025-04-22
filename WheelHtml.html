@@ -86,12 +86,19 @@
       });
     }
 
-    function spinWheel() {
-      if (options.length === 0) return;
-      const randomIndex = Math.floor(Math.random() * options.length);
-      const offset = 60 * randomIndex;
-      wheel.style.transform = `rotateX(${total}deg)`;
-    }
+    let currentRotation = 0; // keeps track of current wheel position
+
+function spinWheel() {
+  const extraSpins = 5; // full spins
+  const finalRotation = Math.floor(Math.random() * 360); // where it lands
+  const totalRotation = currentRotation + (extraSpins * 360) + finalRotation;
+
+  const wheel = document.getElementById("wheel");
+  wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)"; // smooth, decelerating
+  wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+  currentRotation = totalRotation; // update for next spin
+}
 
     // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
