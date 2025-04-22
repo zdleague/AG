@@ -26,7 +26,6 @@
       position: absolute;
       width: 100%;
       transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-      transform-origin : center center;
     }
 
     .item {
@@ -91,7 +90,7 @@
       if (options.length === 0) return;
       const randomIndex = Math.floor(Math.random() * options.length);
       const offset = 60 * randomIndex;
-      wheel.style.transform = `translateY(-${offset})`;
+      wheel.style.transform = `rotateY(${total}deg)`;
     }
 
     // Trigger from Mix It Up
