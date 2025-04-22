@@ -97,7 +97,7 @@ function spinWheel() {
   wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)"; // smooth, decelerating
   wheel.style.transform = `rotateY(${total}deg)`;
 
-  currentRotation = totalRotation; // update for next spin
+  currentRotation = total; // update for next spin
 }
 
     // Trigger from Mix It Up
