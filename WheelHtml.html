@@ -86,18 +86,30 @@
       });
     }
 
-    let currentRotation = 0; // keeps track of current wheel position
+let currentRotation = 0;
+let isSpinning = false;
 
 function spinWheel() {
-  const extraSpins = 5; // full spins
-  const finalRotation = Math.floor(Math.random() * 360); // where it lands
-  const total = currentRotation + (extraSpins * 360) + finalRotation;
+  if (isSpinning) return;
+  isSpinning = true;
+
+  const extraSpins = 6; // Full 360s (change this for more drama)
+  const stopAt = Math.floor(Math.random() * 360); // Where we land
+  const total = currentRotation + (extraSpins * 360) + stopAt;
 
   const wheel = document.getElementById("wheel");
-  wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)"; // smooth, decelerating
+
+  // Spin settings
+  wheel.style.transition = "transform 6s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `rotateX(${total}deg)`;
 
-  currentRotation = total; // update for next spin
+  // Remember current position for next spin
+  currentRotation = total;
+
+  setTimeout(() => {
+    isSpinning = false;
+    console.log("🎯 Landed on angle:", stopAt);
+  }, 6000);
 }
 
     // Trigger from Mix It Up
