@@ -93,14 +93,14 @@ function spinWheel() {
   isSpinning = true;
 
   const extraSpins = 6; // Full 360s (change this for more drama)
-  const stopAt = Math.floor(Math.random() * 360); // Where we land
+  const stopAt = Math.floor(Math.random() * options.length); // Where we land
   const total = currentRotation + (extraSpins * 360) + stopAt;
 
   const wheel = document.getElementById("wheel");
 
   // Spin settings
   wheel.style.transition = "transform 6s cubic-bezier(0.25, 1, 0.5, 1)";
-  wheel.style.transform = `rotateX(${total}deg)`;
+  wheel.style.transform = `rotateX(-${offset}px)`;
 
   // Remember current position for next spin
   currentRotation = total;
