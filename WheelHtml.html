@@ -91,8 +91,6 @@ function spinWheel() {
       const randomIndex = Math.floor(Math.random() * options.length);
       const offset = 60 * randomIndex;
       wheel.style.transform = translateY(-${offset}px);
-)
-      console.log("Wheel is spinning!");
     }
 
 
@@ -101,9 +99,9 @@ function spinWheel() {
       if (event.data === "!spin") {
         spinWheel();
       }
- //function spinWheel() {
+ function spinWheel() {
    // Add the logic for spinning your wheel here
-    //console.log("Wheel is spinning!"); // This is just a placeholder. Replace with actual wheel spin logic.
+    console.log("Wheel is spinning!"); // This is just a placeholder. Replace with actual wheel spin logic.
   
 
     // Optional: click to test
