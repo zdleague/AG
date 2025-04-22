@@ -85,11 +85,6 @@
       });
     }
 
-// Trigger from Mix It Up
-    window.addEventListener("message", (event) => {
-      if (event.data === "!spin") {
-        spinWheel();
-      )}
 
 function spinWheel() {
       if (options.length === 0) return;
@@ -99,6 +94,12 @@ function spinWheel() {
        console.log("Wheel is spinning!");
     }
 
+
+// Trigger from Mix It Up
+    window.addEventListener("message"), (event) => {
+      if (event.data === "!spin") {
+        spinWheel();
+      }
  //function spinWheel() {
    // Add the logic for spinning your wheel here
     //console.log("Wheel is spinning!"); // This is just a placeholder. Replace with actual wheel spin logic.
