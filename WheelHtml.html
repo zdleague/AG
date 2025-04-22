@@ -78,7 +78,15 @@
 
     function buildWheel() {
       wheel.innerHTML = '';
+
       options.forEach(option => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.textContent = option;
+        wheel.appendChild(div);
+      });
+
+options.forEach(option => {
         const div = document.createElement('div');
         div.className = 'item';
         div.textContent = option;
@@ -86,26 +94,13 @@
       });
     }
 //This is where Im having a problem and may need to replace with the OG code which is in backup
-function spinWheel() {
-  if (options.length === 0) return;
-
-  const itemHeight = 60;
-  const spinRounds = 10; // how many full spins before stopping
-  const randomIndex = Math.floor(Math.random() * options.length);
-  const totalItems = options.length;
-
-  // Distance to scroll = full spins + where it lands
-  const scrollDistance = (totalItems * spinRounds + randomIndex) * itemHeight;
-
-  wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)";
-  wheel.style.transform = `translateY(-${scrollDistance}px)`;
-
-  // After animation completes, snap it back to the visible entry
-  setTimeout(() => {
-    wheel.style.transition = "none";
-    wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  }, 5200); // slightly longer than transition time for safety
-}
+   function spinWheel() {
+      if (options.length === 0) return;
+      const randomIndex = Math.floor(Math.random() * options.length);
+      const offset = 60 * randomIndex;
+      wheel.style.transition = "transform 6s cubic-bezier(0.25, 1, 0.5, 1)";
+      wheel.style.transform = `translateY(-500px)`;
+    }
 
 
     // Trigger from Mix It Up
