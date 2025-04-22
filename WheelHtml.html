@@ -95,7 +95,7 @@ function spinWheel() {
 
   const wheel = document.getElementById("wheel");
   wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)"; // smooth, decelerating
-  wheel.style.transform = `rotate(${totalRotation}deg)`;
+  wheel.style.transform = `rotateY(360deg)`;
 
   currentRotation = totalRotation; // update for next spin
 }
