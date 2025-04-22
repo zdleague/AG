@@ -84,20 +84,18 @@
         wheel.appendChild(div);
       });
     }
-
-    const wheel = document.getElementById("wheel");
-
-    function spinWheel() {
-      const randomDeg = Math.floor(Math.random() * 360) + 720; // at least 2 full spins
-      wheel.style.transform = `rotate(${randomDeg}deg)`;
-      console.log("Wheel spun to", randomDeg);
+function spinWheel() {
+      if (options.length === 0) return;
+      const randomIndex = Math.floor(Math.random() * options.length);
+      const offset = 60 * randomIndex;
+      wheel.style.transform = translateY(-${offset}px);
     }
 
+    // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
-      if (event.data === "spin") {
+      if (event.data === "!spin") {
         spinWheel();
       }
-    });
 
  function spinWheel() {
     // Add the logic for spinning your wheel here
