@@ -105,7 +105,7 @@ options.forEach(option => {
       if (options.length === 0) return;
       const randomIndex = Math.floor(Math.random() * options.length);
       const offset = 60 * randomIndex;
-      wheel.style.transition = "transform 6s cubic-bezier(0.25, 1, 0.5, 1)";
+      wheel.style.transition = "transform 2s cubic-bezier(0.25, 1, 0.5, 1)";
       wheel.style.transform = `translateY(-500px)`;
     }
   // After animation completes, snap it back to the visible entry
