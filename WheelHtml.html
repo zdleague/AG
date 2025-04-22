@@ -89,11 +89,12 @@
       if (options.length === 0) return;
       const randomIndex = Math.floor(Math.random() * options.length);
       const offset = 60 * randomIndex;
-      wheel.style.transform = `rotate(${randomDeg}deg)`;
+      wheel.style.transform = `translateY(-${offset}px)`;
     }
 
     // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
+      console.log("Received message:", event.data);
       if (event.data === "spin") {
         spinWheel();
       }
