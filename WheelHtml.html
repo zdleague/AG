@@ -84,7 +84,7 @@
         wheel.appendChild(div);
       });
     }
-
+//This is where Im having a problem and may need to replace with the OG code which is in backup
     let currentRotation = 0;
 let isSpinning = false;
 
@@ -98,7 +98,7 @@ function spinWheel() {
 
   const wheel = document.getElementById("wheel");
   wheel.style.transition = "transform 5s cubic-bezier(0.25, 1, 0.5, 1)";
-  wheel.style.transform = `rotateY(${total}deg)`; // 👈 vertical spin
+  wheel.style.transform = `rotateX(${total}deg)`; // 👈 vertical spin | Could also be translateY 
 
   currentRotation = total;
 
