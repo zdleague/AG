@@ -49,7 +49,7 @@
   </style>
 </head>
 <body>
-  <div class="indicator">▼</div>
+  <div class="indicator"> ◀ </div>
   <div id="wheel-container">
     <div id="wheel"></div>
   </div>
@@ -136,7 +136,7 @@ options.forEach(option => {
  
 // After animation completes, snap it back to the visible entry
   setTimeout(() => {
-    wheel.style.transition = "none";
+    wheel.style.transition = "transform 1px";
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
   }, 8200); // slightly longer than transition time for safety
 }
