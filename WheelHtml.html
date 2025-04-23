@@ -38,7 +38,7 @@
     }
     .indicator {
       position: absolute;
-      top:300px;
+      top: 350px;
       left: 700px;
       width: 100%;
       text-align: center-right;
@@ -136,7 +136,7 @@ options.forEach(option => {
  
 // After animation completes, snap it back to the visible entry
   setTimeout(() => {
-    wheel.style.transition = "ease-out";
+    wheel.style.transition = "ease-out"; // STill working on this, if need be it can be none
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
   }, 8200); // slightly longer than transition time for safety
 }
