@@ -138,12 +138,13 @@ options.forEach(option => {
     window.addEventListener("message", (event) => {
       if (event.data === "spin") {
         spinWheel();
+      }
     });
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
 
     loadOptionsFromSheet();
-</script> 
-</body>
+    </script> 
+  </body>
 </html>
