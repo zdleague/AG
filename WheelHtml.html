@@ -133,13 +133,6 @@ options.forEach(option => {
 
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
-
-  // After animation completes, snap it back to the visible entry
-  setTimeout(() => {
-    wheel.style.transition = "none";
-    wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  }, 6200); // slightly longer than transition time for safety
-}
  
     // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
