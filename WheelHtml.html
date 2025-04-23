@@ -54,7 +54,7 @@
     <div id="wheel"></div>
   </div>
 
-  <script>
+  <script> // Need the script to call the spreedsheet, but its calling an unexpected token on the ending /script bit 
     const wheel = document.getElementById('wheel');
     let options = [];
 
@@ -145,6 +145,7 @@ options.forEach(option => {
     document.body.addEventListener("click", spinWheel);
 
     loadOptionsFromSheet();
-    </script> 
+   
   </body>
 </html>
+</script> 
