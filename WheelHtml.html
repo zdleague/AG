@@ -38,8 +38,8 @@
     }
     .indicator {
       position: absolute;
-      top: 120px;
-      left: 0;
+      top: 0px;
+      left: 60;
       width: 100%;
       text-align: center;
       font-size: 2em;
@@ -138,13 +138,12 @@ options.forEach(option => {
     window.addEventListener("message", (event) => {
       if (event.data === "spin") {
         spinWheel();
-      }
     });
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
 
     loadOptionsFromSheet();
-  </script> 
+</script> 
 </body>
 </html>
