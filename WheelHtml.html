@@ -138,7 +138,7 @@ options.forEach(option => {
   setTimeout(() => {
     wheel.style.transition = "none";
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  }, 7200); // slightly longer than transition time for safety
+  }, 7300); // slightly longer than transition time for safety
 }
 
 
@@ -149,6 +149,7 @@ options.forEach(option => {
       }
     });
 
+console.log('item');
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
 
