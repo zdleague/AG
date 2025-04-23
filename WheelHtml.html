@@ -135,10 +135,10 @@ options.forEach(option => {
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
  
 // After animation completes, snap it back to the visible entry
-  //setTimeout(() => {
-    //wheel.style.transition = "none";
-    //wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  //}, 5200); // slightly longer than transition time for safety
+  setTimeout(() => {
+    wheel.style.transition = "none";
+    wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
+  }, 7200); // slightly longer than transition time for safety
 }
 
 
