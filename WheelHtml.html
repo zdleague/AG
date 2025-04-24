@@ -164,6 +164,12 @@ window.addEventListener("message", (event) => {
     document.body.addEventListener("click", spinWheel);
 
     loadOptionsFromSheet();
+
+    // This function will be called directly from Mix It Up via HTML Action
+window.spinFromMixItUp = function () {
+  console.log("🔁 spinFromMixItUp() was called!");
+  spinWheel();
+};
      
     </script>
   </body>
