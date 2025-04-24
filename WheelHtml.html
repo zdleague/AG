@@ -18,7 +18,7 @@
     #wheel-container {
       border: 4px solid white;
       width: 300px;
-      height: 150px;
+      height: 300px;
       overflow: hidden;
       position: relative; 
     }
@@ -163,12 +163,6 @@ options.forEach(option => {
     const winner = items[randomIndex];
     winner.style.backgroundColor = '#4CAF50';
     winner.style.color = '#fff';
-
-    // Optional: Show a winner message
-    alert(`🎉 Winner: ${winner.textContent.trim()} 🎉`), 8200;
-  };
-
-
 
     // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
