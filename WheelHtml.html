@@ -122,11 +122,10 @@
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
 
   // Highlight the winner after the spin ends
-  setTimeout(() => {
-    const items = document.querySelectorAll('.item');
-    const winnerItem = items[stopIndex];
-    winnerItem.style.backgroundColor = '#4CAF50';
-    winnerItem.style.color = '#fff';
+ setTimeout(() => {
+      alert(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
+    }, 500); // half a second after highlighting
+  }, 7200); // after spin animation ends
     
     alert(`🎉 Game Chosen is : ${winnerItem.textContent.trim()} 🎉`);
   }, 8200);
