@@ -149,7 +149,7 @@
 }
 
     // Trigger from Mix It Up
-<script>
+
 window.addEventListener("message", (event) => {
   console.log("🛰️ Message received:", event.data);
   if (event.data === "spin") {
@@ -157,7 +157,7 @@ window.addEventListener("message", (event) => {
     spinWheel();
   }
 });
-</script>
+
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
