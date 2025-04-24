@@ -158,10 +158,16 @@ options.forEach(option => {
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
   }, 8200); // slightly longer than transition time for safety
 
-// Optional: Show a winner message
-    alert(`🎉 Winner: ${winner.textContent.trim()} 🎉`);
-  };
+// Highlight the winner
+    const items = document.querySelectorAll('.item');
+    const winner = items[randomIndex];
+    winner.style.backgroundColor = '#4CAF50';
+    winner.style.color = '#fff';
 
+    // Optional: Show a winner message
+    alert(`🎉 Winner: ${winner.textContent.trim()} 🎉`);
+  }, 7200);
+}
 
 
     // Trigger from Mix It Up
