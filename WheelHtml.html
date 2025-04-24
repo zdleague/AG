@@ -138,11 +138,14 @@
   }, 7200); // End of outer setTimeout
 }
     // Trigger from Mix It Up
-    window.addEventListener("message", (event) => {
-      if (event.data === "spin") {
-        spinWheel();
-      }
-    });
+  window.addEventListener("message", (event) => {
+  console.log("Received message:", event.data); // ✅ For debugging
+
+  if (event.data === "spin") {
+    console.log("Spin command triggered! 🎯"); // ✅ Confirming trigger
+    spinWheel();
+  }
+});
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
