@@ -22,6 +22,14 @@
       overflow: hidden;
       position: relative; 
     }
+#wheel-container2 {
+      border: 4px solid red;
+      width: 300px;
+      height: 60px;
+      overflow: hidden;
+      position: absolute; 
+    }
+
   #wheel {
       position: absolute;
       width: 100%;
@@ -34,7 +42,7 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid #444;
-      background: #222;
+      background: #222
     }
     .indicator {
       position: absolute;
@@ -141,11 +149,12 @@
 }
 
     // Trigger from Mix It Up
-  window.addEventListener("message", (event) => {
-  console.log("Received message:", event.data); // ✅ For debugging
+ window.addEventListener("message", (event) => {
+  console.log("🛰 Received message:", event.data); // Logs anything
 
-  if (event.data === "spin") {
-    console.log("Spin command triggered! 🎯"); // ✅ Confirming trigger
+  // Try lowercasing to catch variations
+  if (event.data && event.data.toLowerCase && event.data.toLowerCase() === "spin") {
+    console.log("✅ Spin command triggered!");
     spinWheel();
   }
 });
