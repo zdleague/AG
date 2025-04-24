@@ -141,7 +141,7 @@ options.forEach(option => {
   const totalItems = options.length;
 
   // Distance to scroll = full spins + where it lands
-  const scrollDistance = (totalItems * spinRounds + randomIndex) * 30;
+  const scrollDistance = (totalItems * spinRounds + randomIndex) * 35;
 
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
