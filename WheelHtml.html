@@ -88,60 +88,29 @@
       }
     }
 
-    function buildWheel() {
-      wheel.innerHTML = '';
+   function buildWheel() {
+  wheel.innerHTML = '';
 
-      options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-
-options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-
-options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-
-options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.textContent = option;
-        wheel.appendChild(div);
-      });
-    }
+  for (let i = 0; i < 6; i++) { // Repeat 6 times for smooth scrolling
+    options.forEach(option => {
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.textContent = option;
+      wheel.appendChild(div);
+    });
+  }
+}
 //This is where Im having a problem and may need to replace with the OG code which is in backup
   function spinWheel() {
   if (options.length === 0) return;
 
   const itemHeight = 60;
-  const spinRounds = 3; // how many full spins before stopping
+  const totalVisible = options.length * 6; // because we repeat the list 6 times
   const randomIndex = Math.floor(Math.random() * options.length);
-  const totalItems = options.length;
 
-  // Distance to scroll = full spins + where it lands
-  const scrollDistance = (totalItems * spinRounds + randomIndex) * itemHeight;
+  // Target index in the repeated list
+  const stopIndex = options.length * 3 + randomIndex; // middle of the wheel to land naturally
+  const scrollDistance = stopIndex * itemHeight;
 
   // Clear previous highlights
   document.querySelectorAll('.item').forEach(item => {
@@ -151,19 +120,18 @@ options.forEach(option => {
 
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
- 
-// After animation completes, snap it back to the visible entry
-  setTimeout(() => {
-    wheel.style.transition = "ease-out"; // STill working on this, if need be it can be none
-    wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
-  }, 8200); // slightly longer than transition time for safety
 
-// Highlight the winner
+  // Highlight the winner after the spin ends
+  setTimeout(() => {
     const items = document.querySelectorAll('.item');
-    const winner = items[randomIndex];
-    winner.style.backgroundColor = '#4CAF50';
-    winner.style.color = '#fff';
-  }
+    const winnerItem = items[stopIndex];
+    winnerItem.style.backgroundColor = '#4CAF50';
+    winnerItem.style.color = '#fff';
+    
+    alert(`🎉 Game Chosen is : ${winnerItem.textContent.trim()} 🎉`);
+  }, 7200);
+}
+
     // Trigger from Mix It Up
     window.addEventListener("message", (event) => {
       if (event.data === "spin") {
