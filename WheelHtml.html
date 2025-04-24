@@ -143,6 +143,12 @@ options.forEach(option => {
   // Distance to scroll = full spins + where it lands
   const scrollDistance = (totalItems * spinRounds + randomIndex) * itemHeight;
 
+  // Clear previous highlights
+  document.querySelectorAll('.item').forEach(item => {
+    item.style.backgroundColor = '#222';
+    item.style.color = '#fff';
+  });
+
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
  
@@ -151,6 +157,10 @@ options.forEach(option => {
     wheel.style.transition = "ease-out"; // STill working on this, if need be it can be none
     wheel.style.transform = `translateY(-${randomIndex * itemHeight}px)`;
   }, 8200); // slightly longer than transition time for safety
+
+  alert(`🎉 Game Chosen is : ${winner.textContent.trim()} 🎉`);
+  }, 7200);
+
 }
 
 
