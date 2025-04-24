@@ -149,15 +149,15 @@
 }
 
     // Trigger from Mix It Up
- window.addEventListener("message", (event) => {
-  console.log("🛰 Received message:", event.data); // Logs anything
-
-  // Try lowercasing to catch variations
-  if (event.data && event.data.toLowerCase && event.data.toLowerCase() === "spin") {
-    console.log("✅ Spin command triggered!");
+<script>
+window.addEventListener("message", (event) => {
+  console.log("🛰️ Message received:", event.data);
+  if (event.data === "spin") {
+    console.log("🌀 Triggering spin!");
     spinWheel();
   }
 });
+</script>
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
