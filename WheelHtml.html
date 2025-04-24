@@ -75,7 +75,6 @@
   </div>
 
   <script> // Need the script to call the spreedsheet, but its calling an unexpected token on the ending /script bit 
-    console.log("✅ Overlay loaded and script is running!");
     const wheel = document.getElementById('wheel');
     let options = [];
 
@@ -110,6 +109,7 @@
   }
 }
 //This is where Im having a problem and may need to replace with the OG code which is in backup
+console.log("✅ Overlay loaded and script is running!");
   function spinWheel() {
   if (options.length === 0) return;
 
