@@ -108,35 +108,38 @@
   const repeats = 6;
   const totalItems = options.length * repeats;
   const randomIndex = Math.floor(Math.random() * options.length);
-  const stopIndex = options.length * 3 + randomIndex;
+  const stopIndex = options.length * 3 + randomIndex; // Middle zone for landing
   const scrollDistance = stopIndex * itemHeight;
 
+  const items = document.querySelectorAll('.item');
+
   // Clear previous highlights
-  document.querySelectorAll('.item').forEach(item => {
+  items.forEach(item => {
     item.style.backgroundColor = '#222';
     item.style.color = '#fff';
   });
 
-  // Start spinning
+  // Force reflow trick to ensure transition kicks in
+  wheel.offsetHeight; // trigger reflow
+
+  // Apply animation
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
   wheel.style.transform = `translateY(-${scrollDistance}px)`;
 
-  // Wait until the spin is done
+  // After spin completes...
   setTimeout(() => {
-    const items = document.querySelectorAll('.item');
     const winnerItem = items[stopIndex];
 
-    // Highlight the winner
     winnerItem.style.backgroundColor = '#4CAF50';
     winnerItem.style.color = '#fff';
 
-    // Show popup after short delay
+    // Show winner after highlight
     setTimeout(() => {
       alert(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
     }, 500);
-
-  }, 7200); // End of outer setTimeout
+  }, 7200); // After spin completes
 }
+
     // Trigger from Mix It Up
   window.addEventListener("message", (event) => {
   console.log("Received message:", event.data); // ✅ For debugging
