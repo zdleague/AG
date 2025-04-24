@@ -149,6 +149,50 @@ console.log("✅ Overlay loaded and script is running!");
   }, 7200);
 }
 
+  <script>
+  function spinWheel() {
+    if (options.length === 0) return;
+
+    const itemHeight = 60;
+    const repeats = 6;
+    const totalItems = options.length * repeats;
+    const randomIndex = Math.floor(Math.random() * options.length);
+    const stopIndex = options.length * 3 + randomIndex; // Middle zone for landing
+    const scrollDistance = stopIndex * itemHeight;
+
+    const items = document.querySelectorAll('.item');
+
+    // Clear previous highlights
+    items.forEach(item => {
+      item.style.backgroundColor = '#222';
+      item.style.color = '#fff';
+    });
+
+    // Force reflow trick to ensure transition kicks in
+    wheel.offsetHeight; // trigger reflow
+
+    // Apply animation
+    wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
+    wheel.style.transform = `translateY(-${scrollDistance}px)`;
+
+    // After spin completes...
+    setTimeout(() => {
+      const winnerItem = items[stopIndex];
+
+      // Highlight the winner
+      winnerItem.style.backgroundColor = '#4CAF50';
+      winnerItem.style.color = '#fff';
+
+      // Show winner after highlight
+      setTimeout(() => {
+        console.log(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
+        
+        // Reset the wheel after showing the winner
+        resetWheel();
+      }, 500); // Wait a bit before resetting the wheel
+    }, 7200); // After spin completes
+  }
+
   function resetWheel() {
     // Clear highlight and reset the position smoothly
     const items = document.querySelectorAll('.item');
@@ -166,26 +210,9 @@ console.log("✅ Overlay loaded and script is running!");
     // Optional: Reset wheel position after a small delay (for smoothness)
     setTimeout(() => {
       console.log("Wheel reset!");
-    }, 7200);
+    }, 1000);
   }
-
-    // Show winner after highlight
-    //setTimeout(() => {
-     // console.log(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
-  //  }, 500);
- // }, 7200); // After spin completes
-// 
-
-    // Trigger from Mix It Up
-
-window.addEventListener("message", (event) => {
-  console.log("🛰️ Message received:", event.data);
-  if (event.data === "spin") {
-    console.log("🌀 Triggering spin!");
-    spinWheel();
-  }
-});
-  
+</script>
 
     // Optional: click to test
     document.body.addEventListener("click", spinWheel);
