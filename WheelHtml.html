@@ -120,12 +120,13 @@ console.log("✅ Overlay loaded and script is running!");
   const itemHeight = 60;
   const visibleItems = 3;
   const randomIndex = Math.floor(Math.random() * options.length);
-  const stopIndex = options.length * 3 + randomIndex - (-1); // Adjusting to middle
+  const stopIndex = options.length * 3 + randomIndex - 1; // Adjusting to middle
   const scrollDistance = stopIndex * itemHeight;
+  const fudgeOffset = 10;
 
   // Apply animation (spin)
   wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
-  wheel.style.transform = `translateY(-${scrollDistance}px)`;
+  wheel.style.transform = `translateY(-${scrollDistance - fudgeOffset}px)`;
 
   // After spin completes, find the winner item
   setTimeout(() => {
