@@ -101,7 +101,8 @@
   for (let i = 0; i < 7; i++) { // Repeat 6 times for smooth scrolling
     options.forEach((option, idx) => {
       const div = document.createElement('div');
-      div.className = 'item'; 
+      div.className = 'item';
+      div.textContent = option; 
       wheel.appendChild(div);
     });
   }
