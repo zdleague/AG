@@ -128,6 +128,7 @@ console.log("✅ Overlay loaded and script is running!");
     // Apply animation
     wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
     wheel.style.transform = `translateY(-${scrollDistance}px)`;
+    console.log("Spinning to:", -scrollDistance, "px (item:", randomIndex, ")");
 
     // After spin completes...
     setTimeout(() => {
