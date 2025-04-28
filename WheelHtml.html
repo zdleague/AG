@@ -76,21 +76,24 @@
 
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQs-Szpo_J6BXehkgdXROIt99TcipqnMHCizMdkpMJ2-Ag2mY_C_n1j2Ij-OekVbLTrmarwt4m6b-6p/pub?output=csv';
 
-    async function loadOptionsFromSheet() {
-      try {
-        const res = await fetch(sheetURL);
-        const text = await res.text();
-        options = text
-          .split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 0);
-        buildWheel();
-      } catch (err) {
-        console.error("Error loading Google Sheet:", err);
-        options = ["Error loading sheet"];
-        buildWheel();
-      }
-    }
+   async function loadOptionsFromSheet() {
+  try {
+    const res = await fetch(sheetURL);
+    const text = await res.text();
+    console.log("Fetched CSV data:", text);  // Debugging the CSV data
+    options = text
+      .split('\n') // Split by new lines to get each row
+      .map(line => line.trim()) // Trim extra spaces
+      .filter(line => line.length > 0); // Filter out empty lines
+
+    console.log("Parsed options:", options);  // Log the parsed options to see if they're correct
+    buildWheel(); // Call buildWheel() to update the UI
+  } catch (err) {
+    console.error("Error loading Google Sheet:", err);
+    options = ["Error loading sheet"];
+    buildWheel(); // Call buildWheel() even if there’s an error
+  }
+}
 
    function buildWheel() {
   wheel.innerHTML = '';
