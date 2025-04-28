@@ -114,54 +114,43 @@
 //This is where Im having a problem and may need to replace with the OG code which is in backup
 console.log("✅ Overlay loaded and script is running!");
 
-  function spinWheel() {
-    if (options.length === 0) return;
+ function spinWheel() {
+  if (options.length === 0) return;
 
-    const itemHeight = 60;
-    const repeats = 6;
-    const visibleItems = 3;
-    const randomIndex = Math.floor(Math.random() * options.length);
-    const stopIndex = options.length * 3 + randomIndex - 0.85;
-    const scrollDistance = stopIndex * itemHeight;
+  const itemHeight = 60;
+  const visibleItems = 3;
+  const randomIndex = Math.floor(Math.random() * options.length);
+  const stopIndex = options.length * 3 + randomIndex - Math.floor(visibleItems / 2); // Adjusting to middle
+  const scrollDistance = stopIndex * itemHeight;
 
-    // Clear previous highlights
-    items.forEach(item => {
-      item.style.backgroundColor = '#222';
-      item.style.color = '#fff';
-    });
+  // Apply animation (spin)
+  wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
+  wheel.style.transform = `translateY(-${scrollDistance}px)`;
 
-    // Force reflow trick to ensure transition kicks in
-    wheel.offsetHeight; // trigger reflow
+  // After spin completes, find the winner item
+  setTimeout(() => {
+    const items = document.querySelectorAll('.item'); // Declare items here to make sure it's available
+    console.log("Total .item elements:", items.length); // Debugging: Check how many items are in the wheel
+    console.log("Trying to highlight index:", stopIndex);
 
-    // Apply animation
-    wheel.style.transition = "transform 7s cubic-bezier(0.25, 1, 0.5, 1)";
-    wheel.style.transform = `translateY(-${scrollDistance}px)`;
-    console.log("Spinning to:", -scrollDistance, "px (item:", randomIndex, ")");
+    const winnerItem = items[stopIndex]; // This accesses the item at the stopIndex position
 
-    // After spin completes...
+    if (!winnerItem) {
+      console.error("❌ Couldn't find winner item at index", stopIndex);
+      return;
+    }
+
+    // Highlight the winner item
+    winnerItem.style.backgroundColor = '#4CAF50';
+    winnerItem.style.color = '#fff';
+
+    // Show winner and reset the wheel after some time
     setTimeout(() => {
-
-      const items = document.querySelectorAll('.item');
-
-      const winnerItem = items[stopIndex];
-       if (!winnerItem) {
-    console.error("❌ Couldn't find winner item at index", stopIndex);
-    return;
-  }
-
-      // Highlight the winner
-      winnerItem.style.backgroundColor = '#4CAF50';
-      winnerItem.style.color = '#fff';
-
-      // Show winner after highlight
-      setTimeout(() => {
-        console.log(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
-        
-        // Reset the wheel after showing the winner
-        resetWheel();
-      }, 5000); // Wait a bit before resetting the wheel
-    }, 7200); // After spin completes
-  }
+      console.log(`🎉 Winner: ${winnerItem.textContent.trim()} 🎉`);
+      resetWheel(); // Reset wheel after highlighting the winner
+    }, 5000); // Wait a bit before resetting
+  }, 7200); // Match the time for the spin animation
+}
 
   function resetWheel() {
     // Clear highlight and reset the position smoothly
