@@ -120,7 +120,7 @@ console.log("✅ Overlay loaded and script is running!");
   const itemHeight = 60;
   const visibleItems = 3;
   const randomIndex = Math.floor(Math.random() * options.length);
-  const stopIndex = options.length * 3 + randomIndex - Math.floor(visibleItems / 2); // Adjusting to middle
+  const stopIndex = options.length * 3 + randomIndex - 0.85; // Adjusting to middle
   const scrollDistance = stopIndex * itemHeight;
 
   // Apply animation (spin)
