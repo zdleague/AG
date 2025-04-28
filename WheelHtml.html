@@ -112,9 +112,8 @@ console.log("✅ Overlay loaded and script is running!");
     const itemHeight = 60;
     const repeats = 6;
     const visibleItems = 3;
-    const totalItems = options.length * repeats;
     const randomIndex = Math.floor(Math.random() * options.length);
-    const stopIndex = options.length * 3 + randomIndex - Math.floor(visibleItems / 2); // Middle zone for landing
+    const stopIndex = options.length * 3 + randomIndex - Math.floor(visibleItems / 2);
     const scrollDistance = stopIndex * itemHeight;
 
     const items = document.querySelectorAll('.item');
